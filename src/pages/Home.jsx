@@ -41,28 +41,24 @@ const DRAMA_CAROUSEL = [
 ];
 
 const IMGS = {
-  gazal:   "/images/88892d510.png",
-  guardOnHorse: "/images/800fd58bb.png",
-  bulldog: "/images/28aa8f6ee.png",
-  guard:   "/images/4589fcb89.png",
-  soldier: "/images/6b934982f.png",
-  siege:   "/images/71c787737.png",
-  bg:      "/images/2c245231b.png",
-  map:     "/images/2163156cd.png",
-  maabara1: "/images/eb63ba840.jpg",
-  maabara2: "/images/9fdefacbd.png",
-  ovadia:  "/images/IMG_0011.jpg",
-  sara:    "/images/sara_bw.jpg",
-  ambush:  "/images/dbd137ed3.png",
-  ambush2: "/images/7cc9b876d.png",
-  fight:   "/images/a0b515e94.png",
-  brokencar: "/images/47955c68d.png",
-  ovadiaVsCop: "/images/91f943bc6.png",
-  siegeArrest: "/images/1420f72f0.png",
-  bgSends: "/images/9d53a2676.png",
-  presser: "/images/4bce00695.png",
-  argument: "/images/1b34d88a0.png",
-  haaretzMagazine: "/images/347acad89.png",
+  gazal:   "/images/gazal.jpg",
+  guardOnHorse: "/images/guard-on-horse.png",
+  bulldog: "/images/bulldog.png",
+  soldier: "/images/ovadia-and-guard.jpg",
+  siege:   "/images/siege.jpg",
+  map:     "/images/map-emek-hefer.jpg",
+  maabara1: "/images/maabara-1950s.jpg",
+  ovadia:  "/images/grandpa-ovadia.jpg",
+  sara:    "/images/grandma-sara.jpg",
+  ambush2: "/images/ambush.jpg",
+  fight:   "/images/unsettled-score.jpg",
+  brokencar: "/images/broken-police-car.jpg",
+  ovadiaVsCop: "/images/arrest-attempt.jpg",
+  siegeArrest: "/images/siege.jpg",
+  bgSends: "/images/ben-gurion.jpg",
+  presser: "/images/police-press-conference.jpg",
+  argument: "/images/yeshayahu-vs-mosenzon.jpg",
+  haaretzMagazine: "/images/haaretz-magazine.jpg",
 };
 
 // Newspaper clipping headlines (styled as image-like elements)
@@ -158,7 +154,7 @@ const BG_CAROUSEL = [
     body: "סבלנותם של העולים במעברות החלה לפקוע לאחר שבתי הקבע שהובטחו להם עוד לא נראו באופק והחשש מעוד עונת גשמים הלך וגבר. מצוקת העולים הגיעה עד מסדרונות הסוכנות היהודית והכנסת, אך המענה בושש לבוא.",
   },
   {
-    src: "/images/829179bb8.png",
+    src: "/images/floods.jpg",
     caption: "הצפות במעברה, שנות ה-50, הארכיון הציוני המרכזי",
     headline: "רעב והצפות",
     body: "תושבי המעברות זכרו היטב את ההצפות של החורף שעבר בשבילי המעברות הבוציים ובין האוהלים והבדונים ששימשו למגורי העולים. הקצבות המזון היו מצומצמות והיה קושי להשיג מזון מספיק. עם או בלי קשר למה שאירע, בימים ובשבועות לאחר מכן התרחשו הפגנות שונות במעברות רבות ברחבי הארץ.",
@@ -583,6 +579,7 @@ export default function Home() {
                               <img
                                 key={`guard-${current}`}
                                 src={IMGS.guardOnHorse}
+                                onError={(e) => { e.currentTarget.style.display = "none"; }}
                                 alt="השומר על הסוס"
                                 style={{
                                   position: "absolute",
@@ -597,6 +594,7 @@ export default function Home() {
                               <img
                                 key={`dog-${current}`}
                                 src={IMGS.bulldog}
+                                onError={(e) => { e.currentTarget.style.display = "none"; }}
                                 alt="כלבת הבולדוג"
                                 style={{
                                   position: "absolute",
@@ -664,9 +662,9 @@ export default function Home() {
               { who: "שי פוגלמן", role: "הארץ, 22 בינואר 2010", q: "ההתקוממות הזאת היתה, ככל הנראה, המרי המזרחי הראשון בתולדות המדינה. מדוע אין לה כמעט שום אזכור בספרי ההיסטוריה?", imgIdx: 2 },
             ].map((v, i) => {
               const newspaperImages = [
-                "/images/41a530a59.png",
-                "/images/023c90ada.png",
-                "/images/b6250d850.png",
+                "/images/logo-davar.png",
+                "/images/logo-kol-haam.png",
+                "/images/logo-haaretz.png",
               ];
               return (
                 <div key={i}>
