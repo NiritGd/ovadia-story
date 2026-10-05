@@ -28,8 +28,8 @@ const STRIP_STYLE = `
 const HAARETZ_URL = "https://www.haaretz.co.il/misc/2010-01-22/ty-article/0000017f-e98d-d62c-a1ff-fdff8c050000?gift=562668766f4f47e1b966494a68778732";
 
 const IMGS = {
-  gazal:   "/images/gazal.jpg",
   gazalBasket: "/images/gazal-basket.jpg",
+  gazalPortrait: "/images/gazal-portrait.jpg",
   guardOnHorse: "/images/guard-on-horse.png",
   bulldog: "/images/bulldog.png",
   soldier: "/images/ovadia-and-guard.jpg",
@@ -199,14 +199,13 @@ const STRIPS = {
       headline: "העיתונות כמרקחה",
       body: "הפרשה הגיעה לכנסת ולשולחנו של ראש הממשלה. תוך יום יומיים לאחר המעצר, כבר שלח בן גוריון את ח״כ ישראל ישעיהו ממוצא תימני, כשליחו לחקור את העניין יחד עם המזכיר הצבאי נחמיה ארגוב, שהמליצו לשחרר כמה שיותר עצורים ולסגור את העניין ללא מהומה.",
       image: IMGS.bgSends,
-      caption: "בן גוריון שולח את ח״כ ישעיהו והמזכיר הצבאי ארגוב לעמק חפר",
+      caption: "המחשה ב-AI: בן גוריון שולח את ח״כ ישעיהו והמזכיר הצבאי ארגוב לעמק חפר",
     },
     {
       headline: "גרסת המשטרה",
       body: "הפרשה המשיכה להעסיק את העיתונים ופורסמו גרסאות סותרות מטעם המשטרה ותושבי המעברה. ועד המעברה כינס מסיבת עיתונאים ב-2.11.52 כדי להשמיע את גרסתם. בתגובה כינסה המשטרה יומיים אחר כך מסיבת עיתונאים משלה. במסיבת העיתונאים טען מפקד מחוז חיפה מטעם המשטרה שטעו בנסיגה המוקדמת ושהכוחות הגדולים נועדו רק לשמור על שלום הציבור אל מול ההמון המתפרע והאלים. המפקד טען שאם לא היו 200 שוטרים שרצו למנוע שפיכות דמים זה היה נגמר רע יותר. דובר המשטרה יגאל מוסינזון, טען שהשוטרים מוכשרים לטפל בציבור חלש ופרימיטיבי כפי שהגדירו ח״כ ישעיהו.",
       image: IMGS.presser,
-      caption: "מפקח המשטרה במסיבת העיתונאים",
-      pullQuote: "״על כף המאזניים היתה לא רק הפרסטיז׳ה של המשטרה, אלא גם של מרות המדינה.״ — המפקח אבינרי",
+      caption: "המחשה ב-AI: מפקח המשטרה במסיבת העיתונאים",
     },
     {
       headline: "סערה בעיתונים",
@@ -596,7 +595,7 @@ export default function Home() {
             {/* Timeline */}
             <Timeline />
 
-            <div style={{ borderTop: "1px solid #ddd", marginTop: "48px", paddingTop: "28px" }}>
+            <div style={{ paddingTop: "28px", display: "flex", justifyContent: "flex-end" }}>
               <button onClick={() => { setShowPress(false); setShowFamily(true); window.scrollTo({ top: 0, behavior: "smooth" }); }} style={{
                 padding: "12px 24px",
                 background: "#1a1a1a",
@@ -616,6 +615,7 @@ export default function Home() {
         {/* ══ FAMILY VIEW ══ */}
         {showFamily && (
           <div style={{ paddingTop: "40px" }}>
+            <style>{`@media (max-width: 700px) { .gazal-row { grid-template-columns: 1fr !important; } .gazal-row > div:first-child { max-width: 260px; aspect-ratio: 2 / 3; } }`}</style>
             <div style={{ borderBottom: "2px solid #1a1a1a", paddingBottom: "16px", marginBottom: "40px" }}>
               <h2 style={{ fontFamily: "var(--font-rubik), sans-serif", fontSize: "clamp(24px,4vw,36px)", fontWeight: "700", margin: "0 0 6px" }}>
                 לזכרם של עובדיה ושרה גדסי ז״ל
@@ -650,8 +650,10 @@ export default function Home() {
             </div>
 
             {/* Gazal */}
-            <div style={{ borderTop: "2px solid #1a1a1a", paddingTop: "32px", display: "grid", gridTemplateColumns: "220px 1fr", gap: "32px", alignItems: "start" }}>
-              <img src={IMGS.gazal} alt="גזל גדסי" style={{ width: "100%", display: "block", borderBottom: "3px solid #1a1a1a", filter: "grayscale(30%)" }} />
+            <div className="gazal-row" style={{ borderTop: "2px solid #1a1a1a", paddingTop: "32px", display: "grid", gridTemplateColumns: "200px 1fr", gap: "32px", alignItems: "stretch" }}>
+              <div style={{ position: "relative", overflow: "hidden", borderBottom: "3px solid #1a1a1a" }}>
+                <img src={IMGS.gazalPortrait} alt="גזל גדסי" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 15%", display: "block", filter: "contrast(1.05)" }} />
+              </div>
               <div>
                 <h3 style={{ fontFamily: "var(--font-rubik), sans-serif", fontSize: "22px", margin: "0 0 4px", fontWeight: "700" }}>גזל גדסי</h3>
                 <p style={{ fontSize: "12px", color: "#888", margin: "0 0 16px", fontFamily: "var(--font-lunasima), sans-serif", fontStyle: "italic" }}>אמו של עובדיה</p>
