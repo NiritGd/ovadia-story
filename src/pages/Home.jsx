@@ -42,11 +42,12 @@ const DRAMA_CAROUSEL = [
 
 const IMGS = {
   gazal:   "/images/gazal.jpg",
+  gazalBasket: "/images/gazal-basket.jpg",
   guardOnHorse: "/images/guard-on-horse.png",
   bulldog: "/images/bulldog.png",
   soldier: "/images/ovadia-and-guard.jpg",
   siege:   "/images/siege.jpg",
-  map:     "/images/map-emek-hefer.jpg",
+  mapVintage: "/images/map-emek-hefer-vintage.jpg",
   maabara1: "/images/maabara-1950s.jpg",
   ovadia:  "/images/grandpa-ovadia.jpg",
   sara:    "/images/grandma-sara.jpg",
@@ -76,7 +77,7 @@ const slides = [
     date: "סתיו 1952",
     headline: "מעברת עמק חפר",
     body: "במעברה שוכנו למעלה מ-2,500 עולים — רובם מתימן — בבדונים ובצריפים. עבודה קשה, תנאים עלובים, ושומר פרדסים אחד מהיישוב השכן גבעת חיים שהפך לסמל הפערים בין העולים הוותיקים לעולים החדשים.",
-    image: IMGS.map,
+    image: IMGS.mapVintage,
     imageCaption: "מיקום מעברת עמק חפר, ליד גבעת חיים",
     align: "right",
     accent: "#2c2c2c",
@@ -87,7 +88,7 @@ const slides = [
     date: "חמישי, 23 באוקטובר 1952",
     headline: "גזל והשומר",
     body: "ביום חמישי, גזל גדסי, אשה מבוגרת מהמעברה, יצאה ללקט עשבים לסוף השבוע עבור העז שלה בשדות הסמוכים. השומר של קיבוץ גבעת חיים — משה קום — רכוב על סוסה שחורה, פיזר את כל תכולת הסל של גזל, האשים אותה בגניבת פירות ושיסה בה את כלבת הבולדוג שלו ״מנרה״. גזל חזרה למעברה פצועה ופגועה.",
-    image: IMGS.gazal,
+    image: IMGS.gazalBasket,
     imageCaption: "המחשה ב-AI: גזל גדסי מלקטת עשבים",
     align: "left",
     accent: "#5c3a1e",
@@ -142,7 +143,7 @@ const slides = [
 
 const BG_CAROUSEL = [
   {
-    src: IMGS.map,
+    src: IMGS.mapVintage,
     caption: "מפת עמק חפר, אזור המעברה",
     headline: "מעברת עמק חפר",
     body: "במעברה שוכנו כ-2,000 עולים — רובם מתימן — בבדונים ובצריפים. עבודה קשה, תנאים עלובים, ושומר פרדסים אחד מהקיבוץ השכן גבעת חיים שהפך לסמל הפערים בין העולים הוותיקים לעולים החדשים.",
