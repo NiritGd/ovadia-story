@@ -17,28 +17,15 @@ const ATTACK_STYLE = `
 }
 `;
 
-const HAARETZ_URL = "https://www.haaretz.co.il/misc/2010-01-22/ty-article/0000017f-e98d-d62c-a1ff-fdff8c050000?gift=562668766f4f47e1b966494a68778732";
+const STRIP_STYLE = `
+.story-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; padding: 32px 0; }
+@media (max-width: 700px) {
+  .story-strip { grid-template-columns: 1fr; gap: 20px; }
+  .story-strip > div { order: 0 !important; }
+}
+`;
 
-const DRAMA_CAROUSEL = [
-  {
-    headline: "הבן שלא שתק",
-    body: "ביום שישי, עובדיה גדסי, חייל בחיל הצנחנים חזר הביתה לחופשה מהצבא ומצא את אמו הפצועה. כאשר ראה את השומר קום רוכב סמוך למעברה, ניגש אליו ודרש שילכו יחד למשטרה בעקבות התקיפה של אמו. אך השומר קום ענה: ״אני משטרה וממשלה בעצמי, ואני יכול להרוג אותך במקום״ והסתלק משם ברכיבה.",
-    image: "soldier",
-    caption: "עובדיה גדסי מול השומר",
-  },
-  {
-    headline: "באים לעזרת חבר",
-    body: "בשבת בבוקר לאחר תפילת השחרית, עובדיה גייס כמה חברים טובים ואת האח הצעיר של אחד מהם כפתיון, והם ניסו לארוב לשומר משה קום בפרדס. אך קום לא נראה בסביבה והם חזרו אל המעברה מאוכזבים.",
-    image: "ambush2",
-    caption: "המחשה ב-AI: חיילים וילד אורבים לשומר בין עצי הפרדס",
-  },
-  {
-    headline: "חשבון לא סגור",
-    body: "עובדיה וחבריו חזרו אל המעברה והופתעו לראות את משה קום רוכב על סוסתו בסמוך. הרוחות התלהטו, השומר קום שיסה את כלבתו בעובדיה וחבריו, אך עובדיה תפס את מלתעות הכלבה שייללה בכאב. הגרסאות רבות וסותרות, אך נראה שכולם חטפו מהלומה או שתיים ויש הטוענים שאף נורו כמה יריות מאקדחו של קום.",
-    image: "fight",
-    caption: "לא מתעסקים עם עובדיה וחבריו",
-  },
-];
+const HAARETZ_URL = "https://www.haaretz.co.il/misc/2010-01-22/ty-article/0000017f-e98d-d62c-a1ff-fdff8c050000?gift=562668766f4f47e1b966494a68778732";
 
 const IMGS = {
   gazal:   "/images/gazal.jpg",
@@ -60,6 +47,7 @@ const IMGS = {
   presser: "/images/police-press-conference.jpg",
   argument: "/images/yeshayahu-vs-mosenzon.jpg",
   haaretzMagazine: "/images/haaretz-magazine.jpg",
+  floods: "/images/floods.jpg",
 };
 
 // Newspaper clipping headlines (styled as image-like elements)
@@ -141,80 +129,99 @@ const slides = [
   },
 ];
 
-const BG_CAROUSEL = [
-  {
-    src: IMGS.mapVintage,
-    caption: "מפת עמק חפר, אזור המעברה",
-    headline: "מעברת עמק חפר",
-    body: "במעברה שוכנו כ-2,000 עולים — רובם מתימן — בבדונים ובצריפים. עבודה קשה, תנאים עלובים, ושומר פרדסים אחד מהקיבוץ השכן גבעת חיים שהפך לסמל הפערים בין העולים הוותיקים לעולים החדשים.",
-  },
-  {
-    src: IMGS.maabara1,
-    caption: "עולים במעברה, תחילת שנות ה-50 · צילום: Robert Capa/Magnum",
-    headline: "תסיסה במעברות",
-    body: "סבלנותם של העולים במעברות החלה לפקוע לאחר שבתי הקבע שהובטחו להם עוד לא נראו באופק והחשש מעוד עונת גשמים הלך וגבר. מצוקת העולים הגיעה עד מסדרונות הסוכנות היהודית והכנסת, אך המענה בושש לבוא.",
-  },
-  {
-    src: "/images/floods.jpg",
-    caption: "הצפות במעברה, שנות ה-50, הארכיון הציוני המרכזי",
-    headline: "רעב והצפות",
-    body: "תושבי המעברות זכרו היטב את ההצפות של החורף שעבר בשבילי המעברות הבוציים ובין האוהלים והבדונים ששימשו למגורי העולים. הקצבות המזון היו מצומצמות והיה קושי להשיג מזון מספיק. עם או בלי קשר למה שאירע, בימים ובשבועות לאחר מכן התרחשו הפגנות שונות במעברות רבות ברחבי הארץ.",
-  },
-];
-
-const STORM_CAROUSEL = [
-  {
-    headline: "בן גוריון מתערב",
-    body: "הפרשה הגיעה לכנסת ולשולחנו של ראש הממשלה. תוך יום יומיים לאחר המעצר, כבר שלח בן גוריון את ח״כ ישראל ישעיהו ממוצא תימני, כשליחו לחקור את העניין יחד עם המזכיר הצבאי נחמיה ארגוב, שהמליצו לשחרר כמה שיותר עצורים ולסגור את העניין ללא מהומה.",
-    image: "bgSends",
-    caption: "בן גוריון שולח את ח״כ ישעיהו והמזכיר הצבאי ארגוב לעמק חפר",
-  },
-  {
-    headline: "גרסת המשטרה",
-    body: "הפרשה המשיכה להעסיק את העיתונים ופורסמו גרסאות סותרות מטעם המשטרה ותושבי המעברה. ועד המעברה כינס מסיבת עיתונאים ב-2.11.52 כדי להשמיע את גרסתם. בתגובה כינסה המשטרה יומיים אחר כך מסיבת עיתונאים משלה. במסיבת העיתונאים טען מפקד מחוז חיפה מטעם המשטרה שטעו בנסיגה המוקדמת ושהכוחות הגדולים נועדו רק לשמור על שלום הציבור אל מול ההמון המתפרע והאלים. המפקד טען שאם לא היו 200 שוטרים שרצו למנוע שפיכות דמים זה היה נגמר רע יותר. דובר המשטרה יגאל מוסינזון, טען שהשוטרים מוכשרים לטפל בציבור חלש ופרימיטיבי כפי שהגדירו ח״כ ישעיהו.",
-    image: "presser",
-    caption: "מפקח המשטרה במסיבת העיתונאים",
-    pullQuote: "״על כף המאזניים היתה לא רק הפרסטיז׳ה של המשטרה, אלא גם של מרות המדינה.״ — המפקח אבינרי",
-  },
-  {
-    headline: "סערה בעיתונים",
-    body: "במשך כשבועיים עוד המשיכו המשטרה, ונציגי ועד המעברה וח״כ ישעיהו להחליף גרסאות על גבי העיתונים, עד שהעניין בסיפור דעך.",
-    image: "argument",
-    caption: "המחשה ב-AI: ח״כ ישעיהו ודובר המשטרה מוסינזון מתווכחים על רקע כותרות עיתוני התקופה",
-  },
-];
-
-const SIEGE_CAROUSEL = [
-  {
-    headline: "נקמת השומר",
-    body: "בשעות הצהריים של יום השבת חזר השומר קום למעברה בניידת משטרה מלווה בשלושה שוטרים. בעת ששני שוטרים מחפשים אחר המעורבים בקטטה, התעוררה מהומה סביב הניידת שנכנסה למעברה בשבת ובה ישב השומר השנוא. לאחר שהתושבים ניפצו את חלון הניידת השוטרים נאלצו לסגת כדי לקרוא לתגבורת.",
-    image: "brokencar",
-    caption: "חלון הניידת השבור, תמונה מתוך הכתבה על הפרשה בירחון העולם הזה",
-  },
-  {
-    headline: "2:0 למעברה",
-    body: "השוטרים המבוהלים דרשו תגבורת גדולה, אך מפקד התחנה, תושב גבעת חיים בעצמו, אסף 25 משוטרי התחנה ושלח אותם שנית עוד בצהרי יום השבת כדי להשתלט על ״העולים הפוחזים״ ולהעמיד את האשמים לדין. כשהשוטרים הגיעו לצריף של עובדיה הם דרשו ממנו לבוא איתם לתחנה, אך הוא סירב וטען שרק משטרה צבאית רשאית לעצור חייל. בחלק מהדיווחים נמסר שהשוטרים אף פרצו לבית הכנסת של המעברה בחיפוש אחר האשמים. התושבים הכועסים מחו על ניסיון המעצר וחילול השבת ובמקום התפתחה מהומה. המשטרה נאלצה לסגת שנית",
-    image: "ovadiaVsCop",
-    caption: "המחשה ב-AI: עובדיה עומד על זכותו בתוך המהומה במעברה.",
-  },
-  {
-    headline: "המעברה נפלה",
-    body: "לאחר הנסיגה החליט מפקד התחנה לגייס כוח של כ-200-300 שוטרים. הוחלט לחזור אל המעברה כבר לפנות בוקר יום ראשון כדי למצות את הדין. כוח המשטרה הגדול נערך סביב המעברה ומתוך מאות גברים ונערים 105 נלקחו למעצר בחדרה כבר באותו בוקר. 39 מהם, כולל שני נערים, נשארו במעצר למשך הלילה והובאו לפני שופט למחרת. מהמעברה יצאה אליהם משלחת עם סירי אוכל לעודדם. בהתערבות מנהל המעברה, הסכים השופט להפחית בעונשם של העצורים ולהסתפק בקנסות מופחתים. עובדיה לא נתפס על ידי המשטרה אך הסגיר את עצמו, ולא ברור מה היה עונשו בסופו של דבר.",
-    image: "siegeArrest",
-    caption: "המחשה ב-AI: המצור על מעברת עמק חפר לפנות שחר",
-    pullQuote: "״על כף המאזניים היתה לא רק הפרסטיז׳ה של המשטרה, אלא גם של מרות המדינה.״ — המפקח אבינרי",
-  },
-];
+// Chapters told as three image + text strips, keyed by slide id
+const STRIPS = {
+  0: [
+    {
+      headline: "החיים במעברה",
+      body: "במעברה שוכנו כ-2,000 עולים — רובם מתימן — בבדונים ובצריפים. עבודה קשה, תנאים עלובים, ושומר פרדסים אחד מהקיבוץ השכן גבעת חיים שהפך לסמל הפערים בין העולים הוותיקים לעולים החדשים.",
+      image: IMGS.mapVintage,
+      caption: "המחשה ב-AI: מפת עמק חפר, אזור המעברה",
+    },
+    {
+      headline: "תסיסה במעברות",
+      body: "סבלנותם של העולים במעברות החלה לפקוע לאחר שבתי הקבע שהובטחו להם עוד לא נראו באופק והחשש מעוד עונת גשמים הלך וגבר. מצוקת העולים הגיעה עד מסדרונות הסוכנות היהודית והכנסת, אך המענה בושש לבוא.",
+      image: IMGS.maabara1,
+      caption: "עולים במעברה, תחילת שנות ה-50 · צילום: Robert Capa/Magnum",
+      grayscale: true,
+    },
+    {
+      headline: "רעב והצפות",
+      body: "תושבי המעברות זכרו היטב את ההצפות של החורף שעבר בשבילי המעברות הבוציים ובין האוהלים והבדונים ששימשו למגורי העולים. הקצבות המזון היו מצומצמות והיה קושי להשיג מזון מספיק. עם או בלי קשר למה שאירע, בימים ובשבועות לאחר מכן התרחשו הפגנות שונות במעברות רבות ברחבי הארץ.",
+      image: IMGS.floods,
+      caption: "הצפות במעברה, שנות ה-50, הארכיון הציוני המרכזי",
+      grayscale: true,
+    },
+  ],
+  2: [
+    {
+      headline: "הדרישה לצדק",
+      body: "ביום שישי, עובדיה גדסי, חייל בחיל הצנחנים חזר הביתה לחופשה מהצבא ומצא את אמו הפצועה. כאשר ראה את השומר קום רוכב סמוך למעברה, ניגש אליו ודרש שילכו יחד למשטרה בעקבות התקיפה של אמו. אך השומר קום ענה: ״אני משטרה וממשלה בעצמי, ואני יכול להרוג אותך במקום״ והסתלק משם ברכיבה.",
+      image: IMGS.soldier,
+      caption: "עובדיה גדסי מול השומר",
+    },
+    {
+      headline: "באים לעזרת חבר",
+      body: "בשבת בבוקר לאחר תפילת השחרית, עובדיה גייס כמה חברים טובים ואת האח הצעיר של אחד מהם כפתיון, והם ניסו לארוב לשומר משה קום בפרדס. אך קום לא נראה בסביבה והם חזרו אל המעברה מאוכזבים.",
+      image: IMGS.ambush2,
+      caption: "המחשה ב-AI: חיילים וילד אורבים לשומר בין עצי הפרדס",
+    },
+    {
+      headline: "חשבון לא סגור",
+      body: "עובדיה וחבריו חזרו אל המעברה והופתעו לראות את משה קום רוכב על סוסתו בסמוך. הרוחות התלהטו, השומר קום שיסה את כלבתו בעובדיה וחבריו, אך עובדיה תפס את מלתעות הכלבה שייללה בכאב. הגרסאות רבות וסותרות, אך נראה שכולם חטפו מהלומה או שתיים ויש הטוענים שאף נורו כמה יריות מאקדחו של קום.",
+      image: IMGS.fight,
+      caption: "לא מתעסקים עם עובדיה וחבריו",
+    },
+  ],
+  3: [
+    {
+      headline: "נקמת השומר",
+      body: "בשעות הצהריים של יום השבת חזר השומר קום למעברה בניידת משטרה מלווה בשלושה שוטרים. בעת ששני שוטרים מחפשים אחר המעורבים בקטטה, התעוררה מהומה סביב הניידת שנכנסה למעברה בשבת ובה ישב השומר השנוא. לאחר שהתושבים ניפצו את חלון הניידת השוטרים נאלצו לסגת כדי לקרוא לתגבורת.",
+      image: IMGS.brokencar,
+      caption: "חלון הניידת השבור, תמונה מתוך הכתבה על הפרשה בירחון העולם הזה",
+    },
+    {
+      headline: "2:0 למעברה",
+      body: "השוטרים המבוהלים דרשו תגבורת גדולה, אך מפקד התחנה, תושב גבעת חיים בעצמו, אסף 25 משוטרי התחנה ושלח אותם שנית עוד בצהרי יום השבת כדי להשתלט על ״העולים הפוחזים״ ולהעמיד את האשמים לדין. כשהשוטרים הגיעו לצריף של עובדיה הם דרשו ממנו לבוא איתם לתחנה, אך הוא סירב וטען שרק משטרה צבאית רשאית לעצור חייל. בחלק מהדיווחים נמסר שהשוטרים אף פרצו לבית הכנסת של המעברה בחיפוש אחר האשמים. התושבים הכועסים מחו על ניסיון המעצר וחילול השבת ובמקום התפתחה מהומה. המשטרה נאלצה לסגת שנית",
+      image: IMGS.ovadiaVsCop,
+      caption: "המחשה ב-AI: עובדיה עומד על זכותו בתוך המהומה במעברה.",
+    },
+    {
+      headline: "המעברה נפלה",
+      body: "לאחר הנסיגה החליט מפקד התחנה לגייס כוח של כ-200-300 שוטרים. הוחלט לחזור אל המעברה כבר לפנות בוקר יום ראשון כדי למצות את הדין. כוח המשטרה הגדול נערך סביב המעברה ומתוך מאות גברים ונערים 105 נלקחו למעצר בחדרה כבר באותו בוקר. 39 מהם, כולל שני נערים, נשארו במעצר למשך הלילה והובאו לפני שופט למחרת. מהמעברה יצאה אליהם משלחת עם סירי אוכל לעודדם. בהתערבות מנהל המעברה, הסכים השופט להפחית בעונשם של העצורים ולהסתפק בקנסות מופחתים. עובדיה לא נתפס על ידי המשטרה אך הסגיר את עצמו, ולא ברור מה היה עונשו בסופו של דבר.",
+      image: IMGS.siegeArrest,
+      caption: "המחשה ב-AI: המצור על מעברת עמק חפר לפנות שחר",
+      pullQuote: "״על כף המאזניים היתה לא רק הפרסטיז׳ה של המשטרה, אלא גם של מרות המדינה.״ — המפקח אבינרי",
+    },
+  ],
+  4: [
+    {
+      headline: "העיתונות כמרקחה",
+      body: "הפרשה הגיעה לכנסת ולשולחנו של ראש הממשלה. תוך יום יומיים לאחר המעצר, כבר שלח בן גוריון את ח״כ ישראל ישעיהו ממוצא תימני, כשליחו לחקור את העניין יחד עם המזכיר הצבאי נחמיה ארגוב, שהמליצו לשחרר כמה שיותר עצורים ולסגור את העניין ללא מהומה.",
+      image: IMGS.bgSends,
+      caption: "בן גוריון שולח את ח״כ ישעיהו והמזכיר הצבאי ארגוב לעמק חפר",
+    },
+    {
+      headline: "גרסת המשטרה",
+      body: "הפרשה המשיכה להעסיק את העיתונים ופורסמו גרסאות סותרות מטעם המשטרה ותושבי המעברה. ועד המעברה כינס מסיבת עיתונאים ב-2.11.52 כדי להשמיע את גרסתם. בתגובה כינסה המשטרה יומיים אחר כך מסיבת עיתונאים משלה. במסיבת העיתונאים טען מפקד מחוז חיפה מטעם המשטרה שטעו בנסיגה המוקדמת ושהכוחות הגדולים נועדו רק לשמור על שלום הציבור אל מול ההמון המתפרע והאלים. המפקד טען שאם לא היו 200 שוטרים שרצו למנוע שפיכות דמים זה היה נגמר רע יותר. דובר המשטרה יגאל מוסינזון, טען שהשוטרים מוכשרים לטפל בציבור חלש ופרימיטיבי כפי שהגדירו ח״כ ישעיהו.",
+      image: IMGS.presser,
+      caption: "מפקח המשטרה במסיבת העיתונאים",
+      pullQuote: "״על כף המאזניים היתה לא רק הפרסטיז׳ה של המשטרה, אלא גם של מרות המדינה.״ — המפקח אבינרי",
+    },
+    {
+      headline: "סערה בעיתונים",
+      body: "במשך כשבועיים עוד המשיכו המשטרה, ונציגי ועד המעברה וח״כ ישעיהו להחליף גרסאות על גבי העיתונים, עד שהעניין בסיפור דעך.",
+      image: IMGS.argument,
+      caption: "המחשה ב-AI: ח״כ ישעיהו ודובר המשטרה מוסינזון מתווכחים על רקע כותרות עיתוני התקופה",
+    },
+  ],
+};
 
 export default function Home() {
   const [current, setCurrent] = useState(0);
   const [showHaaretz, setShowHaaretz] = useState(false);
   const [showPress, setShowPress] = useState(false);
   const [showFamily, setShowFamily] = useState(false);
-  const [carouselIdx, setCarouselIdx] = useState(0);
-  const [dramaIdx, setDramaIdx] = useState(0);
-  const [siegeIdx, setSiegeIdx] = useState(0);
-  const [stormIdx, setStormIdx] = useState(0);
   const slideRef = useRef(null);
   const activeAudiosRef = useRef([]);
 
@@ -241,37 +248,6 @@ export default function Home() {
 
     return t;
   }, [stopSounds]);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCarouselIdx(i => (i + 1) % BG_CAROUSEL.length);
-    }, 10000);
-    return () => clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
-    if (current !== 2) return;
-    const timer = setInterval(() => {
-      setDramaIdx(i => (i + 1) % DRAMA_CAROUSEL.length);
-    }, 10000);
-    return () => clearInterval(timer);
-  }, [current]);
-
-  useEffect(() => {
-    if (current !== 3) return;
-    const timer = setInterval(() => {
-      setSiegeIdx(i => (i + 1) % SIEGE_CAROUSEL.length);
-    }, 10000);
-    return () => clearInterval(timer);
-  }, [current]);
-
-  useEffect(() => {
-    if (current !== 4) return;
-    const timer = setInterval(() => {
-      setStormIdx(i => (i + 1) % STORM_CAROUSEL.length);
-    }, 10000);
-    return () => clearInterval(timer);
-  }, [current]);
 
   const goTo = (i) => {
     stopSounds();
@@ -340,6 +316,7 @@ export default function Home() {
         {/* ══ STORY VIEW ══ */}
         {!showPress && !showFamily && (
           <>
+            <style>{STRIP_STYLE}</style>
             {/* Intro blurb */}
             <div style={{ borderBottom: "1px solid #ddd", padding: "28px 0 24px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
               <p style={{ fontSize: "clamp(15px, 2vw, 17px)", lineHeight: "1.9", margin: 0, color: "#333", gridColumn: "1 / -1" }}>
@@ -378,250 +355,179 @@ export default function Home() {
                 <div style={{ flex: 1, height: "1px", background: "#ddd" }} />
               </div>
 
-              {/* Content grid */}
-              <div style={{
-                display: "grid",
-                gridTemplateColumns: slide.align === "center" ? "1fr" : "1fr 1fr",
-                gap: "40px",
-                alignItems: "start",
-              }}>
-                {/* Text side */}
-                <div style={{ order: slide.align === "left" ? 2 : 1 }}>
+              {STRIPS[slide.id] ? (
+                <>
                   <h2 style={{
                     fontFamily: "var(--font-rubik), sans-serif",
                     fontSize: "clamp(26px, 4vw, 42px)",
                     fontWeight: "700",
                     color: "#1a1a1a",
                     lineHeight: "1.15",
-                    margin: "0 0 20px",
+                    margin: "0 0 24px",
                     letterSpacing: "-0.5px",
-                    transition: "opacity 0.5s ease",
                   }}>
-                    {slide.id === 0 ? BG_CAROUSEL[carouselIdx].headline : slide.id === 2 ? DRAMA_CAROUSEL[dramaIdx].headline : slide.id === 3 ? SIEGE_CAROUSEL[siegeIdx].headline : slide.id === 4 ? STORM_CAROUSEL[stormIdx].headline : slide.headline}
+                    {slide.headline}
                   </h2>
-
-                  <p style={{ fontSize: "clamp(15px, 2vw, 17px)", lineHeight: "2", color: "#333", margin: "0 0 24px", transition: "opacity 0.5s ease" }}>
-                    {slide.id === 0 ? BG_CAROUSEL[carouselIdx].body : slide.id === 2 ? DRAMA_CAROUSEL[dramaIdx].body : slide.id === 3 ? SIEGE_CAROUSEL[siegeIdx].body : slide.id === 4 ? STORM_CAROUSEL[stormIdx].body : slide.body}
-                  </p>
-
-                  {(slide.pullQuote || (slide.id === 3 && SIEGE_CAROUSEL[siegeIdx].pullQuote) || (slide.id === 4 && STORM_CAROUSEL[stormIdx].pullQuote)) && !(slide.id === 2 && dramaIdx !== 0) && (
-                    <div style={{
-                      borderTop: "2px solid #1a1a1a",
-                      borderBottom: "1px solid #ddd",
-                      padding: "20px 0",
-                      margin: "24px 0",
-                    }}>
-                      <p style={{
-                        fontFamily: "var(--font-rubik), sans-serif",
-                        fontSize: "clamp(16px, 2.5vw, 20px)",
-                        fontStyle: "italic",
-                        color: "#1a1a1a",
-                        lineHeight: "1.6",
-                        margin: 0,
-                      }}>
-                        {slide.id === 3 ? SIEGE_CAROUSEL[siegeIdx].pullQuote : slide.id === 4 ? STORM_CAROUSEL[stormIdx].pullQuote : slide.pullQuote}
-                      </p>
-                    </div>
-                  )}
-
-                  {slide.isLast && (
-                    <div style={{ marginTop: "24px", display: "flex", gap: "12px", flexWrap: "wrap" }}>
-                      <button onClick={() => setShowHaaretz(true)} style={{
-                        padding: "12px 24px",
-                        background: "#1a1a1a",
-                        color: "#f7f4ef",
-                        border: "none",
-                        cursor: "pointer",
-                        fontSize: "14px",
-                        fontFamily: "var(--font-lunasima), sans-serif",
-                        letterSpacing: "1px",
-                      }}>
-                        כתבת הארץ 2010 ←
-                      </button>
-                      <button onClick={() => setShowPress(true)} style={{
-                        padding: "12px 24px",
-                        background: "transparent",
-                        color: "#1a1a1a",
-                        border: "1px solid #1a1a1a",
-                        cursor: "pointer",
-                        fontSize: "14px",
-                        fontFamily: "var(--font-lunasima), sans-serif",
-                        letterSpacing: "1px",
-                      }}>
-                        עיתונות התקופה ←
-                      </button>
-                    </div>
-                  )}
-                </div>
-
-                {/* Image side */}
-                {slide.image && (
-                  <div style={{ order: slide.align === "left" ? 1 : 2 }}>
-                    {slide.id === 0 ? (
-                      /* Carousel for הרקע slide */
-                      <div style={{ position: "relative", overflow: "hidden" }}>
-                        <div style={{ position: "relative", width: "100%", paddingBottom: "100%", overflow: "hidden", borderBottom: "3px solid #1a1a1a" }}>
-                          {BG_CAROUSEL.map((item, i) => (
-                            <img key={i} src={item.src} alt={item.caption}
-                              style={{
-                                position: "absolute", inset: 0, width: "100%", height: "100%",
-                                objectFit: "cover", objectPosition: i === 0 ? "top center" : "center",
-                                filter: i === 1 || i === 2 ? "grayscale(100%) contrast(1.05)" : "grayscale(20%) contrast(1.05)",
-                                opacity: carouselIdx === i ? 1 : 0,
-                                transition: "opacity 0.8s ease",
-                              }} />
-                          ))}
-                        </div>
-                        <p style={{ fontSize: "11px", color: "#888", margin: "8px 0 4px", fontFamily: "var(--font-lunasima), sans-serif", fontStyle: "italic", minHeight: "16px" }}>
-                          {BG_CAROUSEL[carouselIdx].caption}
+                  {STRIPS[slide.id].map((strip, i) => (
+                    <div key={`${slide.id}-${i}`} className="story-strip" style={{ borderTop: i > 0 ? "1px solid #e6e1d8" : "none" }}>
+                      {/* Text side */}
+                      <div style={{ order: i % 2 === 0 ? 1 : 2 }}>
+                        <h3 style={{ fontFamily: "var(--font-rubik), sans-serif", fontSize: "clamp(22px, 3vw, 28px)", fontWeight: "700", color: "#1a1a1a", lineHeight: "1.2", margin: "0 0 16px" }}>
+                          {strip.headline}
+                        </h3>
+                        <p style={{ fontSize: "clamp(15px, 2vw, 17px)", lineHeight: "2", color: "#333", margin: 0 }}>
+                          {strip.body}
                         </p>
-                        <div style={{ display: "flex", gap: "6px", marginTop: "4px" }}>
-                          {BG_CAROUSEL.map((_, i) => (
-                            <button key={i} onClick={() => setCarouselIdx(i)} style={{
-                              width: "8px", height: "8px", borderRadius: "50%",
-                              background: carouselIdx === i ? "#1a1a1a" : "#ccc",
-                              border: "none", cursor: "pointer", padding: 0,
-                            }} />
-                          ))}
-                        </div>
-                      </div>
-                    ) : slide.id === 2 ? (
-                      /* Carousel for הדרמה slide */
-                      <div style={{ position: "relative" }}>
-                        <div style={{ position: "relative", width: "100%", paddingBottom: "100%", overflow: "hidden", borderBottom: "3px solid #1a1a1a" }}>
-                          {DRAMA_CAROUSEL.map((item, i) => (
-                            <img key={i} src={IMGS[item.image]} alt={item.caption}
-                              style={{
-                                position: "absolute", inset: 0, width: "100%", height: "100%",
-                                objectFit: "cover", objectPosition: "center",
-                                filter: "grayscale(20%) contrast(1.05)",
-                                opacity: dramaIdx === i ? 1 : 0,
-                                transition: "opacity 0.8s ease",
-                              }} />
-                          ))}
-                        </div>
-                        <p style={{ fontSize: "11px", color: "#888", margin: "8px 0 4px", fontFamily: "var(--font-lunasima), sans-serif", fontStyle: "italic", minHeight: "16px" }}>
-                          {DRAMA_CAROUSEL[dramaIdx].caption}
-                        </p>
-                        <div style={{ display: "flex", gap: "6px", marginTop: "4px" }}>
-                          {DRAMA_CAROUSEL.map((_, i) => (
-                            <button key={i} onClick={() => setDramaIdx(i)} style={{
-                              width: "8px", height: "8px", borderRadius: "50%",
-                              background: dramaIdx === i ? "#1a1a1a" : "#ccc",
-                              border: "none", cursor: "pointer", padding: 0,
-                            }} />
-                          ))}
-                        </div>
-                      </div>
-                    ) : slide.id === 4 ? (
-                      /* Carousel for הסערה slide */
-                      <div style={{ position: "relative" }}>
-                        <div style={{ position: "relative", width: "100%", paddingBottom: "100%", overflow: "hidden", borderBottom: "3px solid #1a1a1a" }}>
-                          {STORM_CAROUSEL.map((item, i) => (
-                            <img key={i} src={IMGS[item.image]} alt={item.caption}
-                              style={{
-                                position: "absolute", inset: 0, width: "100%", height: "100%",
-                                objectFit: "cover", objectPosition: "center",
-                                filter: "grayscale(20%) contrast(1.05)",
-                                opacity: stormIdx === i ? 1 : 0,
-                                transition: "opacity 0.8s ease",
-                              }} />
-                          ))}
-                        </div>
-                        <p style={{ fontSize: "11px", color: "#888", margin: "8px 0 4px", fontFamily: "var(--font-lunasima), sans-serif", fontStyle: "italic", minHeight: "16px" }}>
-                          {STORM_CAROUSEL[stormIdx].caption}
-                        </p>
-                        <div style={{ display: "flex", gap: "6px", marginTop: "4px" }}>
-                          {STORM_CAROUSEL.map((_, i) => (
-                            <button key={i} onClick={() => setStormIdx(i)} style={{
-                              width: "8px", height: "8px", borderRadius: "50%",
-                              background: stormIdx === i ? "#1a1a1a" : "#ccc",
-                              border: "none", cursor: "pointer", padding: 0,
-                            }} />
-                          ))}
-                        </div>
-                      </div>
-                    ) : slide.id === 3 ? (
-                      /* Carousel for המצור slide */
-                      <div style={{ position: "relative" }}>
-                        <div style={{ position: "relative", width: "100%", paddingBottom: "100%", overflow: "hidden", borderBottom: "3px solid #1a1a1a" }}>
-                          {SIEGE_CAROUSEL.map((item, i) => (
-                            <img key={i} src={IMGS[item.image]} alt={item.caption}
-                              style={{
-                                position: "absolute", inset: 0, width: "100%", height: "100%",
-                                objectFit: "cover", objectPosition: "center",
-                                filter: "grayscale(20%) contrast(1.05)",
-                                opacity: siegeIdx === i ? 1 : 0,
-                                transition: "opacity 0.8s ease",
-                              }} />
-                          ))}
-                        </div>
-                        <p style={{ fontSize: "11px", color: "#888", margin: "8px 0 4px", fontFamily: "var(--font-lunasima), sans-serif", fontStyle: "italic", minHeight: "16px" }}>
-                          {SIEGE_CAROUSEL[siegeIdx].caption}
-                        </p>
-                        <div style={{ display: "flex", gap: "6px", marginTop: "4px" }}>
-                          {SIEGE_CAROUSEL.map((_, i) => (
-                            <button key={i} onClick={() => setSiegeIdx(i)} style={{
-                              width: "8px", height: "8px", borderRadius: "50%",
-                              background: siegeIdx === i ? "#1a1a1a" : "#ccc",
-                              border: "none", cursor: "pointer", padding: 0,
-                            }} />
-                          ))}
-                        </div>
-                      </div>
-                    ) : (
-                      <div style={{ position: "relative" }}>
-                        <style>{ATTACK_STYLE}</style>
-                        <div style={{ position: "relative", overflow: "hidden" }}>
-                          <img src={slide.image} alt={slide.headline}
-                            style={{ width: "100%", display: "block", filter: "grayscale(20%) contrast(1.05)", borderBottom: "3px solid #1a1a1a" }} />
-                          {slide.id === 1 && (
-                            <>
-                              <img
-                                key={`guard-${current}`}
-                                src={IMGS.guardOnHorse}
-                                onError={(e) => { e.currentTarget.style.display = "none"; }}
-                                alt="השומר על הסוס"
-                                style={{
-                                  position: "absolute",
-                                  bottom: "0%",
-                                  left: "-5%",
-                                  width: "102%",
-                                  objectFit: "contain",
-                                  animation: "rideIn 1.4s cubic-bezier(0.22,0.61,0.36,1) 0.4s both",
-                                  pointerEvents: "none",
-                                }}
-                              />
-                              <img
-                                key={`dog-${current}`}
-                                src={IMGS.bulldog}
-                                onError={(e) => { e.currentTarget.style.display = "none"; }}
-                                alt="כלבת הבולדוג"
-                                style={{
-                                  position: "absolute",
-                                  bottom: "5%",
-                                  left: "44%",
-                                  width: "30%",
-                                  objectFit: "contain",
-                                  animation: "dogIn 1.1s cubic-bezier(0.22,0.61,0.36,1) 1.4s both",
-                                  pointerEvents: "none",
-                                }}
-                              />
-                            </>
-                          )}
-                        </div>
-                        {slide.imageCaption && (
-                          <p style={{ fontSize: "11px", color: "#888", margin: "8px 0 0", fontFamily: "var(--font-lunasima), sans-serif", fontStyle: "italic" }}>
-                            {slide.imageCaption}
-                          </p>
+                        {strip.pullQuote && (
+                          <div style={{ borderTop: "2px solid #1a1a1a", borderBottom: "1px solid #ddd", padding: "20px 0", margin: "24px 0 0" }}>
+                            <p style={{ fontFamily: "var(--font-rubik), sans-serif", fontSize: "clamp(16px, 2.5vw, 20px)", fontStyle: "italic", fontWeight: "700", color: "#1a1a1a", lineHeight: "1.6", margin: 0 }}>
+                              {strip.pullQuote}
+                            </p>
+                          </div>
                         )}
+                      </div>
+                      {/* Image side */}
+                      <div style={{ order: i % 2 === 0 ? 2 : 1 }}>
+                        <img src={strip.image} alt={strip.caption} loading="lazy"
+                          style={{ width: "100%", display: "block", borderBottom: "3px solid #1a1a1a", filter: strip.grayscale ? "grayscale(100%) contrast(1.05)" : "grayscale(20%) contrast(1.05)" }} />
+                        <p style={{ fontSize: "11px", color: "#888", margin: "8px 0 0", fontFamily: "var(--font-lunasima), sans-serif", fontStyle: "italic" }}>
+                          {strip.caption}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </>
+              ) : (
+                <div style={{
+                  display: "grid",
+                  gridTemplateColumns: slide.align === "center" ? "1fr" : "1fr 1fr",
+                  gap: "40px",
+                  alignItems: "start",
+                }}>
+                  {/* Text side */}
+                  <div style={{ order: slide.align === "left" ? 2 : 1 }}>
+                    <h2 style={{
+                      fontFamily: "var(--font-rubik), sans-serif",
+                      fontSize: "clamp(26px, 4vw, 42px)",
+                      fontWeight: "700",
+                      color: "#1a1a1a",
+                      lineHeight: "1.15",
+                      margin: "0 0 20px",
+                      letterSpacing: "-0.5px",
+                      transition: "opacity 0.5s ease",
+                    }}>
+                      {slide.headline}
+                    </h2>
+
+                    <p style={{ fontSize: "clamp(15px, 2vw, 17px)", lineHeight: "2", color: "#333", margin: "0 0 24px", transition: "opacity 0.5s ease" }}>
+                      {slide.body}
+                    </p>
+
+                    {slide.pullQuote && (
+                      <div style={{
+                        borderTop: "2px solid #1a1a1a",
+                        borderBottom: "1px solid #ddd",
+                        padding: "20px 0",
+                        margin: "24px 0",
+                      }}>
+                        <p style={{
+                          fontFamily: "var(--font-rubik), sans-serif",
+                          fontSize: "clamp(16px, 2.5vw, 20px)",
+                          fontStyle: "italic",
+                          color: "#1a1a1a",
+                          lineHeight: "1.6",
+                          margin: 0,
+                        }}>
+                          {slide.pullQuote}
+                        </p>
+                      </div>
+                    )}
+
+                    {slide.isLast && (
+                      <div style={{ marginTop: "24px", display: "flex", gap: "12px", flexWrap: "wrap" }}>
+                        <button onClick={() => setShowHaaretz(true)} style={{
+                          padding: "12px 24px",
+                          background: "#1a1a1a",
+                          color: "#f7f4ef",
+                          border: "none",
+                          cursor: "pointer",
+                          fontSize: "14px",
+                          fontFamily: "var(--font-lunasima), sans-serif",
+                          letterSpacing: "1px",
+                        }}>
+                          כתבת הארץ 2010 ←
+                        </button>
+                        <button onClick={() => setShowPress(true)} style={{
+                          padding: "12px 24px",
+                          background: "transparent",
+                          color: "#1a1a1a",
+                          border: "1px solid #1a1a1a",
+                          cursor: "pointer",
+                          fontSize: "14px",
+                          fontFamily: "var(--font-lunasima), sans-serif",
+                          letterSpacing: "1px",
+                        }}>
+                          עיתונות התקופה ←
+                        </button>
                       </div>
                     )}
                   </div>
-                )}
+
+                  {/* Image side */}
+                  {slide.image && (
+                    <div style={{ order: slide.align === "left" ? 1 : 2 }}>
+                        <div style={{ position: "relative" }}>
+                          <style>{ATTACK_STYLE}</style>
+                          <div style={{ position: "relative", overflow: "hidden" }}>
+                            <img src={slide.image} alt={slide.headline}
+                              style={{ width: "100%", display: "block", filter: "grayscale(20%) contrast(1.05)", borderBottom: "3px solid #1a1a1a" }} />
+                            {slide.id === 1 && (
+                              <>
+                                <img
+                                  key={`guard-${current}`}
+                                  src={IMGS.guardOnHorse}
+                                  onError={(e) => { e.currentTarget.style.display = "none"; }}
+                                  alt="השומר על הסוס"
+                                  style={{
+                                    position: "absolute",
+                                    bottom: "0%",
+                                    left: "-5%",
+                                    width: "102%",
+                                    objectFit: "contain",
+                                    animation: "rideIn 1.4s cubic-bezier(0.22,0.61,0.36,1) 0.4s both",
+                                    pointerEvents: "none",
+                                  }}
+                                />
+                                <img
+                                  key={`dog-${current}`}
+                                  src={IMGS.bulldog}
+                                  onError={(e) => { e.currentTarget.style.display = "none"; }}
+                                  alt="כלבת הבולדוג"
+                                  style={{
+                                    position: "absolute",
+                                    bottom: "5%",
+                                    left: "44%",
+                                    width: "30%",
+                                    objectFit: "contain",
+                                    animation: "dogIn 1.1s cubic-bezier(0.22,0.61,0.36,1) 1.4s both",
+                                    pointerEvents: "none",
+                                  }}
+                                />
+                              </>
+                            )}
+                          </div>
+                          {slide.imageCaption && (
+                            <p style={{ fontSize: "11px", color: "#888", margin: "8px 0 0", fontFamily: "var(--font-lunasima), sans-serif", fontStyle: "italic" }}>
+                              {slide.imageCaption}
+                            </p>
+                          )}
+                        </div>
+                    </div>
+                  )}
 
 
-              </div>
+                </div>
+              )}
             </div>
 
             {/* PREV / NEXT */}
@@ -663,9 +569,9 @@ export default function Home() {
               { who: "שי פוגלמן", role: "הארץ, 22 בינואר 2010", q: "ההתקוממות הזאת היתה, ככל הנראה, המרי המזרחי הראשון בתולדות המדינה. מדוע אין לה כמעט שום אזכור בספרי ההיסטוריה?", imgIdx: 2 },
             ].map((v, i) => {
               const newspaperImages = [
-                "/images/logo-davar.png",
                 "/images/logo-kol-haam.png",
-                "/images/logo-haaretz.png",
+                "/images/logo-herut.png",
+                "/images/logo-al-hamishmar.png",
               ];
               return (
                 <div key={i}>
@@ -679,7 +585,7 @@ export default function Home() {
                     </blockquote>
                   </div>
                   {v.imgIdx !== undefined && (
-                    <div style={{ margin: "28px 0 28px", maxWidth: "260px", marginLeft: i % 2 === 0 ? "auto" : "0" }}>
+                    <div style={{ margin: "28px 0 28px", maxWidth: "260px", marginLeft: "auto" }}>
                       <img src={newspaperImages[v.imgIdx]} alt="כותרת עיתון" style={{ width: "100%", border: "1px solid #ddd", filter: "grayscale(15%)", opacity: 0.85 }} />
                     </div>
                   )}
@@ -689,6 +595,21 @@ export default function Home() {
 
             {/* Timeline */}
             <Timeline />
+
+            <div style={{ borderTop: "1px solid #ddd", marginTop: "48px", paddingTop: "28px" }}>
+              <button onClick={() => { setShowPress(false); setShowFamily(true); window.scrollTo({ top: 0, behavior: "smooth" }); }} style={{
+                padding: "12px 24px",
+                background: "#1a1a1a",
+                color: "#f7f4ef",
+                border: "none",
+                cursor: "pointer",
+                fontSize: "14px",
+                fontFamily: "var(--font-lunasima), sans-serif",
+                letterSpacing: "1px",
+              }}>
+                המשפחה ←
+              </button>
+            </div>
           </div>
         )}
 
@@ -710,7 +631,7 @@ export default function Home() {
                 <div style={{ width: "100%", aspectRatio: "2/3", overflow: "hidden", borderBottom: "3px solid #1a1a1a" }}>
                   <img src={IMGS.ovadia} alt="עובדיה גדסי" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 15%", filter: "contrast(1.05)", display: "block" }} />
                 </div>
-                <h3 style={{ fontFamily: "var(--font-rubik), sans-serif", fontSize: "22px", margin: "16px 0 4px", fontWeight: "500" }}>עובדיה גדסי</h3>
+                <h3 style={{ fontFamily: "var(--font-rubik), sans-serif", fontSize: "22px", margin: "16px 0 4px", fontWeight: "700" }}>עובדיה גדסי</h3>
                 <p style={{ fontSize: "12px", color: "#888", margin: "0 0 12px", fontFamily: "var(--font-lunasima), sans-serif", fontStyle: "italic" }}>הצנחן ולוחם הצדק למען אמו</p>
                 <p style={{ fontSize: "15px", lineHeight: "1.9", color: "#333", margin: 0 }}>
                   חייל צעיר שחזר אל המעברה לחופשת השבת, מצא את אמו פצועה — ולא שתק. בעיתוני התקופה הוא מוזכר כ״צנחן״. בהמשך שירת במשמר הגבול שנים רבות. הוא נפטר בשנת 2004, והסיפור נקבר יחד עמו, עד שהתגלה לבני המשפחה במקרה.
@@ -720,7 +641,7 @@ export default function Home() {
                 <div style={{ width: "100%", aspectRatio: "2/3", overflow: "hidden", borderBottom: "3px solid #1a1a1a" }}>
                   <img src={IMGS.sara} alt="שרה גדסי" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }} />
                 </div>
-                <h3 style={{ fontFamily: "var(--font-rubik), sans-serif", fontSize: "22px", margin: "16px 0 4px", fontWeight: "500" }}>שרה גדסי</h3>
+                <h3 style={{ fontFamily: "var(--font-rubik), sans-serif", fontSize: "22px", margin: "16px 0 4px", fontWeight: "700" }}>שרה גדסי</h3>
                 <p style={{ fontSize: "12px", color: "#888", margin: "0 0 12px", fontFamily: "var(--font-lunasima), sans-serif", fontStyle: "italic" }}>אשתו של עובדיה ועמוד התווך של המשפחה</p>
                 <p style={{ fontSize: "15px", lineHeight: "1.9", color: "#333", margin: 0 }}>
                   עובדיה ושרה נישאו בתימן זמן קצר לפני עלייתם בעליית על כנפי נשרים. לאחר שנות המעברה הקשות עלו אל הקרקע והיו ממייסדי מושב גבעת יערים. הם הקימו משפחה לתפארת והיו תמיד אנשי מעשה שהלכו בדרך הישר ותרמו בדרכים רבות לקהילה. היא נפטרה בשנת 2025.
@@ -730,15 +651,15 @@ export default function Home() {
 
             {/* Gazal */}
             <div style={{ borderTop: "2px solid #1a1a1a", paddingTop: "32px", display: "grid", gridTemplateColumns: "220px 1fr", gap: "32px", alignItems: "start" }}>
-              <img src={IMGS.gazal} alt="גזל גדסי — איור" style={{ width: "100%", display: "block", borderBottom: "3px solid #1a1a1a", filter: "grayscale(30%)" }} />
+              <img src={IMGS.gazal} alt="גזל גדסי" style={{ width: "100%", display: "block", borderBottom: "3px solid #1a1a1a", filter: "grayscale(30%)" }} />
               <div>
-                <h3 style={{ fontFamily: "var(--font-rubik), sans-serif", fontSize: "22px", margin: "0 0 4px", fontWeight: "500" }}>גזל גדסי</h3>
+                <h3 style={{ fontFamily: "var(--font-rubik), sans-serif", fontSize: "22px", margin: "0 0 4px", fontWeight: "700" }}>גזל גדסי</h3>
                 <p style={{ fontSize: "12px", color: "#888", margin: "0 0 16px", fontFamily: "var(--font-lunasima), sans-serif", fontStyle: "italic" }}>אמו של עובדיה</p>
                 <p style={{ fontSize: "15px", lineHeight: "1.9", color: "#333", margin: "0 0 12px" }}>
                   שמה גזל (גַ'זַל), שנכתב בערבית עם האות ר'יין (غ) ולכן בחלק מהעיתונים נזכרה בשם רזאל — שם יפה שפירושו ״צביה״.
                 </p>
                 <p style={{ fontSize: "15px", lineHeight: "1.9", color: "#333", margin: 0 }}>
-                  אשה תימניה מבוגרת שיצאה לאסוף עשבים לעז שלה — ומפגישה עם שומר פרדסים שינתה את מהלך ההיסטוריה. התמונה כאן היא רק להמחשה כיוון שאין בידינו תמונה שלה ושמה לא מוזכר בספרי ההיסטוריה. כאן נזכור אותה תמיד בלבנו.
+                  אשה תימניה מבוגרת שיצאה לאסוף עשבים לעז שלה — ומפגישה עם שומר פרדסים שינתה את מהלך ההיסטוריה. החיים של גזל לא היו פשוטים, עם כמה ילדים שנפטרו עוד בתימן, ובעל שהלך לעולמו בתימן בטרם עת והשאיר אותה עם שלושה ילדים צעירים. גזל ניהלה את משק ביתה ביד רמה ועלתה ארצה עם שלושת ילדיה: עובדיה, שמעה ושלום.
                 </p>
               </div>
             </div>
